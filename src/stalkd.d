@@ -237,7 +237,7 @@ class Tube {
 
       auto response = receive();
       if(!response.startsWith("USING")) {
-         response.chomp();
+         auto tmp = response.chomp();
          throw(new StalkdException(to!string("Server responded with a " ~ response ~ " error.")));
       }
       _using = name;
@@ -256,7 +256,7 @@ class Tube {
             send(null, "watch", name);
             auto response = receive();
             if(!response.startsWith("WATCHING")) {
-               response.chomp();
+               auto tmp = response.chomp();
                throw(new StalkdException(to!string("Server responded with a " ~ response ~ " error.")));
             }
             _watching ~= name;
@@ -278,7 +278,7 @@ class Tube {
             send(null, "ignore", name);
             auto response = receive();
             if(!response.startsWith("WATCHING")) {
-               response.chomp();
+               auto tmp = response.chomp();
                throw(new StalkdException(to!string("Server responded with a " ~ response ~ " error.")));
             }
 
